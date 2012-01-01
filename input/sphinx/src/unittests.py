@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 
 """
-.. |doctest|	replace:: :py:mod:`doctest`
-.. |unittest|	replace:: :py:mod:`unittest`
-
 This code is not intended to be used for computations, but instead demonstrates the
 basic features of the Python |unittest| framework.  Unit tests are small example
 inputs and outputs associated with individual pieces of code (i.e. functions).  They

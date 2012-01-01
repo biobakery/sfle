@@ -11,6 +11,9 @@ c_strSufPY				= ".py"
 c_strSufRST				= ".rst"
 
 c_fileInputIndexRST		= File( sfle.d( fileDirInput, "index" + c_strSufRST ) )
+c_afileInputRSTs		= Glob( sfle.d( os.path.dirname( str(c_fileInputIndexRST) ), "*" + c_strSufRST ) ) + \
+							Glob( sfle.d( "../demo_*", os.path.basename( str(fileDirInput) ), "*" + c_strSufRST ) )
+							# Mild hack to include demonstration documentation as dependencies
 c_fileInputConfPY		= File( sfle.d( sfle.c_strDirSrc, "conf" + c_strSufPY ) )
 
 c_fileDoctestTXT		= File( sfle.d( fileDirOutput, "doctest.txt" ) )
@@ -24,8 +27,8 @@ c_fileProgUnitTests		= File( sfle.d( sfle.c_strDirSrc, "unittests.py" ) )
 
 pE = DefaultEnvironment( )
 
-afileProgs = [c_fileProgArgParser, c_fileProgGrepRows, c_fileProgSubsample, c_fileProgTranspose,
-	c_fileProgUnitTests, c_fileProgVitals]
+afileProgs = [c_fileProgSflE, c_fileProgArgParser, c_fileProgGenerateTable, c_fileProgGrepRows,
+	c_fileProgMergeTables, c_fileProgSubsample, c_fileProgTranspose, c_fileProgUnitTests, c_fileProgVitals]
 
 def funcSphinx( fDoctest = False ):
 	def funcRet( target, source, env, fDoctest = fDoctest ):
@@ -36,7 +39,8 @@ def funcSphinx( fDoctest = False ):
 	return funcRet
 pPrev = None
 for strOutput, fDoctest in ((c_fileIndexHTML, False), (c_fileSphinxTXT, True)):
-	pCur = Command( strOutput, [c_fileInputIndexRST, c_fileInputConfPY] + afileProgs, funcSphinx( fDoctest ) )
+	pCur = Command( strOutput, [c_fileInputIndexRST, c_fileInputConfPY] +
+		c_afileInputRSTs + afileProgs, funcSphinx( fDoctest ) )
 	if pPrev:
 		Requires( pCur, pPrev )
 	pPrev = pCur

@@ -1,5 +1,11 @@
 #!/usr/bin/env python
 
+"""
+.. testsetup::
+
+	from sfle import *
+"""
+
 import csv
 import ftplib
 import glob
@@ -93,12 +99,60 @@ def lc( strFile ):
 """
 
 def d( *aArgs ):
+	"""
+	Convenience function for joining two or more components of a path with /s.  Will
+	automatically convert objects into strings before joining.
+	
+	:param	aArgs:	Two or more items to be joined.
+	:type	aArgs:	collection
+	:returns:		string -- inputs joined by / characters
+	
+	>>> d( "a", "b", "c" )
+	'a/b/c'
+	
+	Automatic string conversion is most useful for file objects, but will work for
+	any element:
+	
+	>>> d( "r", 2, "d", 2 )
+	'r/2/d/2'
+	"""
 	
 	return "/".join( str(p) for p in aArgs )
 
-def rebase( pPath, strFrom, strTo ):
+def rebase( pPath, strFrom = None, strTo = "" ):
+	"""
+	Convenience function for extracting the base name of a file path, and optionally
+	removing or replacing its type extension.
 	
-	return os.path.basename( str(pPath) ).replace( strFrom, strTo )
+	:param	pPath:		Path from which base name is extracted.
+	:param	strFrom:	File extension to be removed if present.
+	:type	strFrom:	string
+	:param	strTo:		File extension to be optionally re-added.
+	:type	strTo:		string
+	:returns:			string -- path basename with optional extension replacement
+	
+	>>> rebase( "a/b/c.dee" )
+	'c.dee'
+	
+	>>> rebase( "a/b/c.dee", ".dee" )
+	'c'
+	
+	>>> rebase( "a/b/c.dee", ".dee", ".eff" )
+	'c.eff'
+	
+	Automatic string conversion is most useful for file objects, but will work for
+	any element:
+	
+	>>> rebase( 1, "", ".two" )
+	'1.two'
+	"""
+	
+	strRet = os.path.basename( str(pPath) )
+	if strFrom:
+		strRet = strRet.replace( strFrom, strTo )
+	elif strTo:
+		strRet += strTo
+	return strRet
 
 #===============================================================================
 # SCons utilities

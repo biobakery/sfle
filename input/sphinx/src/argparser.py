@@ -1,13 +1,6 @@
 #!/usr/bin/env python
 
 """
-.. |argparse|	replace:: :py:mod:`argparse`
-.. _Sphinx:		http://sphinx.pocoo.org
-
-.. Note that A) Sphinx comments start with .. and B) the following is commented out
-.. since it happens to be defined elsewhere and Sphinx doesn't handle namespaces.
-.. .. |doctest|	replace:: :py:mod:`doctest`
-
 This code is not intended to be used for computations, but instead demonstrates the
 basic features of the Python |argparse| framework.  It also documents the relationship
 of `Sphinx`_ with |argparse| and with the |doctest| framework, both of which can be

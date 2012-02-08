@@ -119,6 +119,8 @@ oo.pipe( mtol400_aln, mtol400_nwk, "FastTree", args = ["-gamma","-bionj"] )
 oo.ext( mtol400_nwk, mtol400_png, "circlader.py", outpipe = False ) 
 oo.pipe( l_microbial_taxonomy, t_arc_taxa1, "grep", e = "Archaea" ) 
 oo.pipe( t_arc_taxa1, t_arc_taxa, "cut", f = "2" ) 
+#oo.pipe( t_arc_taxa1, t_arc_taxa, "nwk_reroot.py" ) 
+
 
 oo.ext( [v['faa_map'] for v in taxa.values()], o_orgs2prots, "cat" )
 oo.f( [o_orgs2prots, t_mtol400_nprots], o_orgs2up, count_ups )

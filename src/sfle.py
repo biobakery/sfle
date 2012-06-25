@@ -315,6 +315,8 @@ def _pipeargs( strFrom, strTo, aArgs ):
 		astrOuts.append( strTo )
 	for pArg in aArgs:
 		if iscollection( pArg ):
+			if len( pArg ) < 2:
+				pArg = [False] + pArg
 			fOut, pArg = pArg[0], _pipefile( pArg[1] )
 			( astrOuts if fOut else astrIns ).append( pArg )
 		astrArgs.append( quote( pArg ) )

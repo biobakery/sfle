@@ -243,7 +243,7 @@ class ooSfle:
         if type(to) not in [tuple,list]: to = [to]
         inpipe, outpipe = (True, True) if pipe else (inpipe, outpipe)
         pargs = []
-        args_items = [(a[0],a[1]) if type(a) in [list,tuple] else (a,"") 
+        args_items = [(a[0],a[1]) if type(a) in [list,tuple] else ("",a) 
                         for a in args] if args else []
         frhashes, tohashes = [hash(f) for f in fr], [hash(t) for t in to]
         if __kwargs__:
@@ -272,7 +272,7 @@ class ooSfle:
                     val = [("out",tohashes.index(hv))]
                 else:
                     val = [str(v)]
-            pargs += [k] + val 
+            pargs += ([k] if k else []) + val 
         
         def _ex_( io ):
             cmd = [str(excmd)]

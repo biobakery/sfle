@@ -457,7 +457,7 @@ class ooSfle:
         if makedb:
             self.ex( [srs[1]], [], 'makeblastdb', verbose = verbose, 
                       tgt_dep = dbfs,
-                      args = [('-max_file_sz','100GB'),('-dbtype','nucl') if prog == 'blastn' else ('-dbtype','prot'),('-in',srs[1]),('-out',srs[1])], 
+                      args = [('-max_file_sz','100GB'),('-dbtype','nucl') if prog in ['blastn','tblastx'] else ('-dbtype','prot'),('-in',srs[1]),('-out',srs[1])], 
                       outpipe = False, long_arg_symb = '-' )
 
         self.ex( srs, tgt, prog, srs_dep = dbfs, verbose = verbose, 

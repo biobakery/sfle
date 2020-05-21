@@ -35,9 +35,9 @@ SflE has several required prerequisites that must be installed and executable in
 ### Installation ###
 
 1. Download and unpack the SflE software
-    * Download the software: [sfle.tar.gz](https://bitbucket.org/biobakery/sfle/get/tip.tar.gz)
-    * `` $ tar xzvf sfle.tar.gz ``
-    * `` $ cd sfle ``
+    * Download the software: [sfle.tar.gz](https://github.com/biobakery/sfle/archive/master.zip)
+    * `` $ unzip master.zip ``
+  
 2. Add the SflE software to your PYTHONPATH
     * `` $ export PYTHONPATH=$PYTHONPATH:`pwd`/src ``
 3. (Optional) Run SflE on all of its default workflows to test the install
@@ -96,7 +96,6 @@ For example, a workflow might consist of the following steps:
 
 Each step represents one or a few modules, and each module runs exactly one command to generate a new output. Normalizing an input file creates one new, normalized output file. Combining two files might require creating two intermediate files and then joining them into another new output file.
 
-Please note, projects are typically each stored in their own separate Mercurial repository. The SflE package includes several demonstration projects, but these are atypical. You should generally hg init your own new projects and then hg push them to their own remote repositories possibly hosted by a site like [Bitbucket](https://bitbucket.org).
 
 SflE defines commands within modules, and assembles modules into workflows, using the [SCons](http://www.scons.org/) build system. [SCons](http://www.scons.org/), like [make](http://www.gnu.org/software/make/manual/make.html), is a dependency-based "language" in which rules are descriptive, not imperative. 
 
@@ -117,5 +116,4 @@ This distinction is subtle, but notice that in the second form, you've only defi
 If you're not familiar with software build systems like SCons or make, we recommend the following background reading:
 
 1. Sections 1-4 of the [GNU make manual](http://www.gnu.org/software/make/manual/make.html)
-2. [The SCons tutorial](https://bitbucket.org/scons/scons/wiki/SconsTutorial1)
-3. Sections 2-3, 6-7, and 18 of the [SCons user guide](http://www.scons.org/doc/HTML/scons-user/)
+2. Sections 2-3, 6-7, and 18 of the [SCons user guide](http://www.scons.org/doc/HTML/scons-user/)
